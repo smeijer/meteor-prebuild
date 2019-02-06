@@ -5,7 +5,7 @@ var packages = [
 
 Package.describe({
   name: 'smeijer:prebuild',
-  version: '1.0.0',
+  version: '1.0.1',
   summary: 'Compiler plugin to run node script prior to meteor build process',
   git: 'https://github.com/smeijer/meteor-prebuild',
   documentation: 'README.md',
