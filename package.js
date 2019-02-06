@@ -19,9 +19,9 @@ Package.registerBuildPlugin({
     'ecmascript',
   ],
   sources: [
-    'cache.js',
-    'constants.js',
-    'prebuild.js',
+    'plugin/cache.js',
+    'plugin/constants.js',
+    'plugin/prebuild.js',
     'plugin.js',
   ],
   npmDependencies: {
@@ -38,5 +38,5 @@ Package.onTest(function(api) {
   api.use('ecmascript');
   api.use('tinytest');
   api.use('smeijer:prebuild');
-  api.mainModule('prebuild-tests.js');
+  api.mainModule('tests.js');
 });

@@ -1,4 +1,4 @@
-import PreBuild from './prebuild';
+import PreBuild from './plugin/prebuild';
 
 Plugin.registerCompiler({
   extensions: ['prebuild.js'],
