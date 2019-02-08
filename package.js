@@ -1,11 +1,9 @@
-var packages = [
-  'ecmascript',
-  'isobuild:compiler-plugin@1.0.0',
-];
+/* global Package */
+var packages = ['ecmascript', 'isobuild:compiler-plugin@1.0.0'];
 
 Package.describe({
   name: 'smeijer:prebuild',
-  version: '1.2.0',
+  version: '1.3.0',
   summary: 'Compiler plugin to run node script prior to meteor build process',
   git: 'https://github.com/smeijer/meteor-prebuild',
   documentation: 'README.md',
@@ -13,11 +11,7 @@ Package.describe({
 
 Package.registerBuildPlugin({
   name: 'prebuild',
-  use: [
-    'minifier-js@2.4.0',
-    'babel-compiler@7.2.4',
-    'ecmascript',
-  ],
+  use: ['minifier-js@2.4.0', 'babel-compiler@7.2.4', 'ecmascript'],
   sources: [
     'plugin/cache.js',
     'plugin/constants.js',
@@ -25,7 +19,8 @@ Package.registerBuildPlugin({
     'plugin.js',
   ],
   npmDependencies: {
-    "rollup": "1.1.2",
+    rollup: '1.1.2',
+    'sync-exec': '0.6.2',
   },
 });
 

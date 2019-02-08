@@ -2,20 +2,17 @@ const fs = Npm.require('fs');
 
 export const IS_METEOR_APP = fs.existsSync('./.meteor');
 
-export const APP_ID = IS_METEOR_APP ? Plugin.fs
-  .readFileSync('./.meteor/.id', 'utf8')
-  .split('\n')
-  .find(x => x[0] !== '#' && x !== '')
-  .trim() : new Date().getTime();
+export const APP_ID = IS_METEOR_APP
+  ? Plugin.fs
+      .readFileSync('./.meteor/.id', 'utf8')
+      .split('\n')
+      .find(x => x[0] !== '#' && x !== '')
+      .trim()
+  : new Date().getTime();
 
-export const PACKAGE_JSON = IS_METEOR_APP ? JSON.parse(
-  Plugin.fs.readFileSync('./package.json', 'utf8'),
-) : {};
-
-export const METEOR_RELEASE = IS_METEOR_APP ? Plugin.fs.readFileSync(
-  './.meteor/release',
-  'utf8',
-) :  'unknown';
+export const PACKAGE_JSON = IS_METEOR_APP
+  ? JSON.parse(Plugin.fs.readFileSync('./package.json', 'utf8'))
+  : {};
 
 export const METEOR_ROOT = (function resolveMeteorRoot() {
   const { BABEL_CACHE_DIR, NODE_PATH, OLDPWD } = process.env;

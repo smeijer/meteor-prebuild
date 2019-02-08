@@ -1,14 +1,13 @@
 const fs = Npm.require('fs');
 import { APP_ID, METEOR_ROOT } from './constants';
 
-const CACHE_DIR = Plugin.path.join(
-  METEOR_ROOT, '.babel-cache',
-);
+const CACHE_DIR = Plugin.path.join(METEOR_ROOT, '.babel-cache');
 
-const CACHE_FILE = Plugin.path.join(
-  CACHE_DIR,
-  'prebuild.' + APP_ID + '.json',
-);
+const CACHE_FILE = Plugin.path.join(CACHE_DIR, 'prebuild.' + APP_ID + '.json');
+
+if (!fs.existsSync(CACHE_DIR)) {
+  Plugin.fs.mkdirSync(CACHE_DIR, { recursive: true });
+}
 
 const cache = {
   _keys: fs.existsSync(CACHE_FILE)
@@ -28,7 +27,6 @@ const cache = {
       this._keys[f] = times[i];
     });
 
-    Plugin.fs.mkdirSync(CACHE_DIR, { recursive: true });
     Plugin.fs.writeFileSync(CACHE_FILE, JSON.stringify(this._keys), 'utf8');
   },
 
