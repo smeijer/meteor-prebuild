@@ -18,11 +18,14 @@ export const METEOR_RELEASE = IS_METEOR_APP ? Plugin.fs.readFileSync(
 ) :  'unknown';
 
 export const METEOR_ROOT = (function resolveMeteorRoot() {
+  const { BABEL_CACHE_DIR, NODE_PATH, OLDPWD } = process.env;
+
   const paths = [
-    Plugin.path.join(process.argv[1], '../../'),
-    Plugin.path.join(process.env.BABEL_CACHE_DIR, '../'),
-    Plugin.path.join(process.env.NODE_PATH, '../../../'),
-  ];
+    process.argv[1] && Plugin.path.join(process.argv[1], '../../'),
+    BABEL_CACHE_DIR && Plugin.path.join(BABEL_CACHE_DIR, '../'),
+    NODE_PATH && Plugin.path.join(process.env.NODE_PATH, '../../../'),
+    OLDPWD && OLDPWD,
+  ].filter(Boolean);
 
   for (let i = 0; i < paths.length; i++) {
     if (

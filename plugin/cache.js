@@ -1,8 +1,12 @@
 const fs = Npm.require('fs');
-import { APP_ID } from './constants';
+import { APP_ID, METEOR_ROOT } from './constants';
+
+const CACHE_DIR = Plugin.path.join(
+  METEOR_ROOT, '.babel-cache',
+);
 
 const CACHE_FILE = Plugin.path.join(
-  process.env.BABEL_CACHE_DIR,
+  CACHE_DIR,
   'prebuild.' + APP_ID + '.json',
 );
 
@@ -24,6 +28,7 @@ const cache = {
       this._keys[f] = times[i];
     });
 
+    Plugin.fs.mkdirSync(CACHE_DIR, { recursive: true });
     Plugin.fs.writeFileSync(CACHE_FILE, JSON.stringify(this._keys), 'utf8');
   },
 
