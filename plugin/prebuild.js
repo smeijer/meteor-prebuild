@@ -71,7 +71,6 @@ export default class PreBuild {
           const bundle = await rollup({ input: task.entry });
 
           if (cache.includes(bundle.watchFiles) && fs.existsSync(task.dest)) {
-            future.return();
             return;
           }
 
