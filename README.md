@@ -20,7 +20,7 @@ module.exports = {
     { data: { version }, dest: './release.json', pretty: true },
   ],
   minify: [
-    { entry: './imports/service-worker.js', dest: './public/service-worker.min.js', compile: true },
+    { entry: './imports/service-worker.js', dest: './public/service-worker.min.js', bare: true },
   ],
 };
 ```

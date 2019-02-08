@@ -53,7 +53,7 @@ export default class PreBuild {
             JSON.stringify(data);
 
           Plugin.fs.writeFileSync(task.dest, json, 'utf8');
-          console.log('  created ' + task.dest);
+          console.log('   created ' + task.dest);
         });
       }
 
@@ -79,11 +79,11 @@ export default class PreBuild {
           });
 
           const bundled = output.filter(x => !x.isAsset).map(x => x.code).join('\n\n');
-          const compiled = Babel.compile(bundled);
+          const compiled = task.bare ? { code: bundled } : Babel.compile(bundled);
           const minified = meteorJsMinify(compiled.code);
 
           Plugin.fs.writeFileSync(task.dest, minified.code, 'utf8');
-          console.log('  saved ' + task.dest);
+          console.log('   saved ' + task.dest);
           cache.write(bundle.watchFiles);
         });
 
