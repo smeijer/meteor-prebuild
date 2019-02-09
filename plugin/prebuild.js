@@ -20,7 +20,7 @@ function ensurePath(file) {
 function log(msg, point) {
   const whitespace = ' '.repeat(Math.max(1, 50 - msg.length));
   const message = (point ? '=> ' : '') + msg + whitespace;
-  return message;
+  console.log(message);
 }
 
 export default class PreBuild {
@@ -119,6 +119,7 @@ export default class PreBuild {
         })
         .catch(ex => {
           console.error('Something went wrong during prebuild');
+          console.error(ex);
           future.return();
         });
 
