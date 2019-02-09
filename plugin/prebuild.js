@@ -18,8 +18,9 @@ function ensurePath(file) {
 }
 
 function log(msg, point) {
-  const message = (point ? '=> ' : '') + msg + ' '.repeat(50 - msg.length);
-  console.log(message);
+  const whitespace = ' '.repeat(Math.max(1, 50 - msg.length));
+  const message = (point ? '=> ' : '') + msg + whitespace;
+  return message;
 }
 
 export default class PreBuild {
