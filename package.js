@@ -3,7 +3,7 @@ var packages = ['ecmascript', 'isobuild:compiler-plugin@1.0.0'];
 
 Package.describe({
   name: 'smeijer:prebuild',
-  version: '1.5.1',
+  version: '1.5.2',
   summary: 'Compiler plugin to run node script prior to meteor build process',
   git: 'https://github.com/smeijer/meteor-prebuild',
   documentation: 'README.md',
